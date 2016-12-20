@@ -3,3 +3,4 @@ Basically the code from  [messenger-bot-turial](https://github.com/jw84/messenge
 
 #### To Do
 - [ ] Add Wit.ai "Hello world"
+- [ ] Add images and description for templates and API
