@@ -19,7 +19,8 @@ export const findOrCreateSession = (fbid) => {
   });
   if (!sessionId) {
     // No session found for user fbid, let's create a new one
-    sessionId = new Date().toISOString();
+    // sessionId = new Date().toISOString();
+    sessionId = fbid
     sessions[sessionId] = {fbid: fbid, context: {}};
   }
   return sessionId;
@@ -35,7 +36,7 @@ const actions = {
       // Yay, we found our recipient!
       // Let's forward our bot response to her.
       // We return a promise to let our bot know when we're done sending
-      send.textMessage(recipientId, text)
+      send.textMessage(recipientId.id, text)
       .then(() => null)
       .catch((err) => {
         console.error(
