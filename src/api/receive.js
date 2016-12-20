@@ -9,7 +9,7 @@ import { timeout } from '../util'
 // ---
 //
 export async function handleWebhookGet (req, res) {
-  if (req.query['hub.verify_token'] === token) {
+  if (req.query['hub.FB_VERIFY_TOKEN'] === token) {
     res.send(req.query['hub.challenge'])
   }
   res.send('Error, wrong token')
@@ -40,17 +40,40 @@ export async function handleWebhookPost (req, res) {
 // Post Helpers
 // ---
 //
+import { sessions, wit } from './index'
 async function handleMessage({ message, sender }) {
-  const text = message.text.toLowerCase()
-  if (text.includes('help')) {
-    await send.textMessage(sender.id, 'That\'s what I\'m here for! 😎')
-  }
-  else if (message.quick_reply) {
-    await handleQuickReply(message, sender)
-  }
-  else {
-    await send.textMessage(sender.id, 'Message Received: ' + message.text)
-  }
+
+  // const text = message.text.toLowerCase()
+  // if (text.includes('help')) {
+  //   await send.textMessage(sender.id, 'That\'s what I\'m here for! 😎')
+  // }
+  // else if (message.quick_reply) {
+  //   await handleQuickReply(message, sender)
+  // }
+  // else {
+  //   await send.textMessage(sender.id, 'Message Received: ' + message.text)
+  // }
+
+  const sessionId = findOrCreateSession(sender);
+
+
+  console.log(`sessionId: ${sessionId}`)
+  console.log('============')
+
+
+  wit.runActions(
+    sessionId, // the user's current session
+    message.text, // the user's message
+    sessions[sessionId].context // the user's current session state
+  ).then((context) => {
+    // Our bot did everything it has to do.
+    // Now it's waiting for further messages to proceed.
+    console.log('Waiting for next user messages');
+
+    sessions[sessionId].context = context;
+  })
+
+  await send.textMessage(sender.id, 'Message Received: ' + message.text)
 }
 
 async function handleQuickReply({ quick_reply }, sender) {

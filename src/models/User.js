@@ -21,7 +21,7 @@ UserSchema.statics.createUnique = async function(messenger_id) {
     const profile = await request({
       url: `https://graph.facebook.com/v2.6/${messenger_id}`,
       qs: {
-        access_token: process.env.FB_PAGE_ACCESS_TOKEN,
+        access_token: process.env.FB_PAGE_TOKEN,
         fields: 'first_name,last_name,profile_pic,locale,timezone,gender,is_payment_enabled'
       },
       method: 'GET'

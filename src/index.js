@@ -15,6 +15,13 @@ dbConnect(app)
 
 // schedule.scheduleJob('0 30 12 * * *', sendDailySubscription)
 
+app.use(({method, url}, rsp, next) => {
+  rsp.on('finish', () => {
+    console.log(`${rsp.statusCode} ${method} ${url}`);
+  })
+  next()
+})
+
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended:false }))
 // parse application/json
@@ -34,7 +41,7 @@ app.post('/webhook/', catchPromiseErrors(handleWebhookPost))
 //
 app.use((err, req, res, next) => {
   console.error('============')
-  console.error(err)
+  console.error(err.stack || err)
   console.error('============')
   res.status(500)
 })

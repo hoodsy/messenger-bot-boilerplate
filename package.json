@@ -19,6 +19,7 @@
     "lodash": "^4.17.2",
     "mongoose": "^4.7.1",
     "node-schedule": "^1.2.0",
+    "node-wit": "^4.2.0",
     "request-promise": "^4.1.1",
     "x-ray": "^2.3.1"
   },

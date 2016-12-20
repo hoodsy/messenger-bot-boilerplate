@@ -1,10 +1,10 @@
 import request from 'request-promise'
 import _ from 'lodash'
-require('dotenv').config()
 
 import User from '../models/User'
 import { Card, ArticleCard, quick_replies } from '../templates'
 import * as actions from '../actions'
+import { FB_PAGE_TOKEN } from '../config'
 
 //
 // Send Message Request
@@ -13,7 +13,7 @@ import * as actions from '../actions'
 async function _send(messageData) {
     await request({
       url: 'https://graph.facebook.com/v2.6/me/messages',
-      qs: { access_token: process.env.FB_PAGE_ACCESS_TOKEN },
+      qs: { access_token: FB_PAGE_TOKEN },
       method: 'POST',
       json: messageData
     })
