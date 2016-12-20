@@ -8,7 +8,7 @@ import * as send from './send'
 // sessionId -> {fbid: facebookUserId, context: sessionState}
 export const sessions = {};
 
-const findOrCreateSession = (fbid) => {
+export const findOrCreateSession = (fbid) => {
   let sessionId;
   // Let's see if we already have a session for the user fbid
   Object.keys(sessions).forEach(k => {
