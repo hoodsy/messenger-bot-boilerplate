@@ -40,7 +40,7 @@ export async function handleWebhookPost (req, res) {
 // Post Helpers
 // ---
 //
-import { sessions, wit } from './index'
+import { sessions, wit, findOrCreateSession } from './index'
 async function handleMessage({ message, sender }) {
 
   // const text = message.text.toLowerCase()
