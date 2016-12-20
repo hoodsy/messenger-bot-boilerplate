@@ -54,7 +54,7 @@ const actions = {
   // You should implement your custom actions here
   // See https://wit.ai/docs/quickstart
 
-  async getContact({ context, entities }) {
+  async getContact(context) {
 
     console.log('in getContact, context: ', context)
     console.log('============')
