@@ -69,7 +69,7 @@ async function handleMessage({ message, sender }) {
   //   sessions[sessionId].context = context;
   // })
 
-  console.log(`returned context: ${context}`)
+  console.log('returned context: ', context)
   console.log('============')
 
   await send.textMessage(sender.id, 'Message Received: ' + message.text)

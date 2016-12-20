@@ -56,8 +56,13 @@ const actions = {
 
   async getContact({ context, text, entities}) {
 
-    console.log('in getContact, context: ', context)
+
+    console.log('in getContact')
     console.log('============')
+
+    console.log('context: ', context)
+    console.log('text: ', text)
+    console.log('entities: ', entities)
 
     await context
   }
