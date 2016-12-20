@@ -59,7 +59,7 @@ const actions = {
     console.log('in getContact, context: ', context)
     console.log('============')
 
-    return context.contact
+    return context
   }
 
 };
