@@ -24,7 +24,13 @@ export async function handleWebhookPost (req, res) {
   for (let i = 0; i < messaging_events.length; i++) {
     let event = req.body.entry[0].messaging[i]
 
-    if (event.message && event.message.text && !event.message.is_echo) {
+
+    console.log('EVENT: ', event)
+    console.log('============')
+
+
+    if (event.message && event.message.text &&
+        !event.message.is_echo && !event.delivery) {
       await handleMessage(event)
     }
 
