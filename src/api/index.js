@@ -36,15 +36,6 @@ const actions = {
       // Let's forward our bot response to her.
       // We return a promise to let our bot know when we're done sending
       await send.textMessage(recipientId.id, text)
-      // .then(() => null)
-      // .catch((err) => {
-      //   console.error(
-      //     'Oops! An error occurred while forwarding the response to',
-      //     recipientId,
-      //     ':',
-      //     err.stack || err
-      //   );
-      // });
     } else {
       console.error('Oops! Couldn\'t find user for session:', sessionId);
       // Giving the wheel back to our bot
@@ -53,7 +44,6 @@ const actions = {
   },
   // You should implement your custom actions here
   // See https://wit.ai/docs/quickstart
-
   async getContact({ context, text, entities}) {
 
 
