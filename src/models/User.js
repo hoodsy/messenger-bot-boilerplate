@@ -52,6 +52,10 @@ UserSchema.statics.findOrCreateSession = async function (messenger_id) {
   }
 
 
+
+  console.log(user.session)
+  console.log('============')
+
   console.log(_.isEmpty(user.session))
   console.log('============')
 
