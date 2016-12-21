@@ -32,6 +32,7 @@ export async function handleWebhookPost (req, res) {
     if (event.message && event.message.text &&
         !event.message.is_echo && !event.delivery) {
       await handleMessage(event)
+      continue
     }
 
     if (event.postback) {
