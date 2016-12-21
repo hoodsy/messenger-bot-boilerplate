@@ -51,6 +51,11 @@ UserSchema.statics.findOrCreateSession = async function (messenger_id) {
     throw new Error(`No User found for ${messenger_id} in findOrCreateSession()`)
   }
 
+
+  console.log(_.isEmpty(user.session))
+  console.log('============')
+
+
   if (_.isEmpty(user.session)) {
     console.log('USER PRE SESSION CREATE')
     console.log('============')
@@ -69,6 +74,10 @@ UserSchema.statics.findOrCreateSession = async function (messenger_id) {
     )
   }
   else {
+
+    console.log('SENDING SESSIONLESS USER')
+    console.log('============')
+
     return user
   }
 }
