@@ -55,8 +55,6 @@ async function handleMessage({ message, sender }) {
   // }
 
   // const sessionId = findOrCreateSession(sender);
-  // const sessionId = findOrCreateSession(sender);
-  await User.createUnique(sender.id)
   const user = await User.findOrCreateSession(sender.id)
 
   const context = await wit.runActions(
