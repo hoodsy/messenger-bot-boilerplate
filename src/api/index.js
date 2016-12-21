@@ -37,11 +37,11 @@ const actions = {
       { 'session.id': sessionId }
     )
 
-
-    console.log('user:')
-    console.log('============')
-    console.log(user)
-    console.log('============')
+    // 
+    // console.log('user:')
+    // console.log('============')
+    // console.log(user)
+    // console.log('============')
 
 
 

@@ -50,12 +50,27 @@ UserSchema.statics.findOrCreateSession = async function (messenger_id) {
     throw new Error(`No User found for ${messenger_id} in findOrCreateSession()`)
   }
 
+
+  console.log('USER PRE SESSION CREATE', user)
+  console.log('============')
+
   if (!user.session) {
-    user.session = {
-      id: new Date().toISOString(),
-      context: {}
-    }
-    await user.save()
+    await this.update(
+      { messenger_id },
+      {
+        $set: {
+          session: {
+            id: new Date().toISOString(),
+            context: {}
+          }
+        }
+      }
+    )
+    // user.session = {
+    //   id: new Date().toISOString(),
+    //   context: {}
+    // }
+    // await user.save()
   }
 
   return user
