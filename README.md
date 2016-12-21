@@ -3,7 +3,9 @@ Basically the code from  [messenger-bot-turial](https://github.com/jw84/messenge
 
 #### To Do
 - [x] Add Wit.ai "Hello world"
-- [ ] Templates for Button / Generic / Quick Reply
+- [x] Templates for Button / Generic / Quick Reply
+- [x] Refactor send to FB API
+- [ ] Refactor receive
 - [ ] Add interaction analytics / tracking
   - Clicks
   - Custom (Wit.ai triggers)

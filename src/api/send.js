@@ -1,13 +1,12 @@
 import request from 'request-promise'
-import _ from 'lodash'
 
 import User from '../models/User'
-import { Card, ArticleCard, quick_replies } from '../templates'
+import { Button } from '../templates
 import * as actions from '../actions'
 import { FB_PAGE_TOKEN } from '../config'
 
 //
-// Send Message Request
+// Message Request
 // ---
 //
 async function _send(messageData) {
@@ -20,73 +19,83 @@ async function _send(messageData) {
 }
 
 //
-// Message Templates
+// Message Types
 // ---
+// API Reference:
+// https://developers.facebook.com/docs/messenger-platform/send-api-reference
 //
-export async function cardsMessage(recipientId, cards) {
-    const messageData = {
-      recipient: { id: recipientId },
-      message: {
-        quick_replies,
-        attachment: {
-          type: 'template',
-          payload: {
-            template_type: 'generic',
-            elements: cards
-          }
-        }
-      }
-    }
-    await _send(messageData)
-}
-
-export async function textMessage(recipientId, text) {
+export async function textMessage(recipientId, text, quick_replies = null) {
   const messageData = {
     recipient: { id: recipientId },
     message: {
-      text: text,
-      quick_replies
+      quick_replies: quick_replies,
+      text: text
     }
   }
   await _send(messageData)
 }
 
-export async function subscriptionMessage(recipientId) {
-    const user = await User.findOne(
-      { messenger_id: recipientId },
-      { subscription: 1 }
-    )
-
-    if (!user) {
-      throw new Error(`User with id ${recipientId} doesn't exist.`)
-    }
-
-    const card = new Card({
-      title: 'Manage Subscription',
-      image_url: '',
-      subtitle: 'Subscribe or unsubscribe'
-    })
-    if (user.subscription.active) {
-      card.button('postback', 'Unsubscribe', actions.UNSUBSCRIBE)
-    }
-    else {
-      card.button('postback', 'Subscribe', actions.SUBSCRIBE)
-    }
-
+export async function templateMessage(recipientId, templates, quick_replies = null) {
     const messageData = {
       recipient: { id: recipientId },
       message: {
-        quick_replies,
+        quick_replies: quick_replies,
         attachment: {
           type: 'template',
           payload: {
             template_type: 'generic',
-            elements: [ card ]
+            elements: templates
           }
         }
       }
     }
     await _send(messageData)
+}
+
+export async function buttonMessage(recipientId, buttons, quick_replies = null) {
+  const messageData = {
+    recipient: { id: recipientId },
+    message: {
+      quick_replies: quick_replies,
+      attachment: {
+        type: 'template',
+        payload: {
+          template_type: 'button',
+          buttons: buttons
+        }
+      }
+    }
+  }
+  await _send(messageData)
+}
+
+//
+// Custom Messages
+// ---
+//
+export async function subscriptionMessage(recipientId) {
+  const user = await User.findOne(
+    { messenger_id: recipientId },
+    { subscription: 1 }
+  )
+
+  if (!user) {
+    throw new Error(`User with id ${recipientId} doesn't exist.`)
+  }
+
+  const button = (user.subscription.active)
+    ? new Button({
+      type: 'postback',
+      title: 'Unsubscribe',
+      payload: actions.UNSUBSCRIBE
+    })
+    : new Button({
+      type: 'postback',
+      title: 'Subscribe',
+      payload: actions.SUBSCRIBE
+    })
+
+  await buttonMessage(recipientId, [ button ])
 }
 
 export async function scheduledSubscriptionMessage() {
