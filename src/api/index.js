@@ -2,6 +2,7 @@ import { Wit, log } from 'node-wit'
 
 import { WIT_TOKEN } from '../config'
 import * as send from './send'
+import User from '../models/User'
 
 // This will contain all user sessions.
 // Each session has an entry:
