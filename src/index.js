@@ -24,10 +24,10 @@ app.use(({method, url}, rsp, next) => {
   next()
 })
 
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended:false }))
 // parse application/json
 app.use(bodyParser.json({ verify: verifyRequestSignature }))
+// parse application/x-www-form-urlencoded
+// app.use(bodyParser.urlencoded({ extended:false }))
 
 app.get('/', function (req, res) {
   res.send('hello world i am a secret bot')
