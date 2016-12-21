@@ -66,20 +66,16 @@ const actions = {
     console.log('============')
 
     if (entities.contact && Array.isArray(entities.contact)) {
-      entities.contact.map(entity => {
-
-        console.log('ENTITY: ', entity)
-        console.log('============')
-
-        context.contact = entity.value
-      })
+      // Choose first entity
+      entities.contact.map(entity => context.contact = entity.value)
     }
 
 
     console.log('returning CONTEXT: ', context)
     console.log('============')
 
-    await context
+    return context
+    // await context
   }
 
 };

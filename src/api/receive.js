@@ -61,7 +61,7 @@ async function handleMessage({ message, sender }) {
     user.session.id, // the user's current session
     message.text, // the user's message
     user.session.context // the user's current session state
-  )
+  ).then(context => console.log('IN THEN: ', context))
 
   // const context = await wit.runActions(
   //   sessionId, // the user's current session
