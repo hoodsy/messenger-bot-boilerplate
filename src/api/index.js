@@ -30,12 +30,26 @@ const actions = {
   async send({sessionId}, {text}) {
     // Our bot has something to say!
     // Let's retrieve the Facebook user whose session belongs to
-    const recipientId = sessions[sessionId].fbid;
-    if (recipientId) {
+    // const recipientId = sessions[sessionId].fbid;
+
+
+    console.log(sessionId)
+    console.log('============')
+    const user = await User.findOne(
+      { 'session.id': sessionId }
+    )
+
+    if (user.messenger_id) {
       // Yay, we found our recipient!
       // Let's forward our bot response to her.
       // We return a promise to let our bot know when we're done sending
-      await send.textMessage(recipientId.id, text)
+      await send.textMessage(user.messenger_id, text)
+
+    // if (recipientId) {
+    //   // Yay, we found our recipient!
+    //   // Let's forward our bot response to her.
+    //   // We return a promise to let our bot know when we're done sending
+    //   await send.textMessage(recipientId.id, text)
     } else {
       console.error('Oops! Couldn\'t find user for session:', sessionId);
       // Giving the wheel back to our bot
