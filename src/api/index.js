@@ -75,7 +75,6 @@ const actions = {
     console.log('============')
 
     return context
-    // await context
   }
 
 };
@@ -85,4 +84,4 @@ export const wit = new Wit({
   accessToken: WIT_TOKEN,
   actions,
   logger: new log.Logger(log.INFO)
-});
+})

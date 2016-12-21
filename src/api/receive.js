@@ -57,7 +57,7 @@ async function handleMessage({ message, sender }) {
   // const sessionId = findOrCreateSession(sender);
   const user = await User.findOrCreateSession(sender.id)
 
-  const context = await wit.runActions(
+  await wit.runActions(
     user.session.id, // the user's current session
     message.text, // the user's message
     user.session.context // the user's current session state
@@ -75,9 +75,6 @@ async function handleMessage({ message, sender }) {
   //
   //   sessions[sessionId].context = context;
   // })
-
-  console.log('returned context: ', context)
-  console.log('============')
 
   await send.textMessage(sender.id, 'Message Received: ' + message.text)
 }
