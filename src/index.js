@@ -4,6 +4,7 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import schedule from 'node-schedule'
 import catchPromiseErrors from 'async-error-catcher'
+import crypto from 'crypto'
 
 import { handleWebhookPost, handleWebhookGet } from './api/receive'
 import { dbConnect } from './config/db'
