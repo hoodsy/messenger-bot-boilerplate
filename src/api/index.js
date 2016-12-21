@@ -28,7 +28,7 @@ export const findOrCreateSession = (fbid) => {
 
 // Our bot actions
 const actions = {
-  async send({sessionId}, {text}) {
+  async send(sessionId, {text}) {
     // Our bot has something to say!
     // Let's retrieve the Facebook user whose session belongs to
     // const recipientId = sessions[sessionId].fbid;
