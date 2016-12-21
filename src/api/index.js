@@ -64,9 +64,11 @@ const actions = {
     console.log('text: ', text)
     console.log('entities: ', entities)
 
-    entities.contact.map(entity => {
-      context.contact = entity.value
-    })
+    if (entities.contact && Array.isArray(entities.contact)) {
+      entities.contact.map(entity => {
+        context.contact = entity.value
+      })
+    }
 
     await context
   }
