@@ -50,14 +50,7 @@ UserSchema.statics.findOrCreateSession = async function (messenger_id) {
     throw new Error(`No User found for ${messenger_id} in findOrCreateSession()`)
   }
 
-
-  console.log(user.session )
-  console.log('============')
-  console.log(!user.session)
-  console.log('============')
-
-
-  if (!user.session) {
+  if (user.session == {}) {
     console.log('USER PRE SESSION CREATE')
     console.log('============')
 
