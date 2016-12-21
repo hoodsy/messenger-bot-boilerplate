@@ -37,14 +37,6 @@ const actions = {
       { 'session.id': sessionId }
     )
 
-    // 
-    // console.log('user:')
-    // console.log('============')
-    // console.log(user)
-    // console.log('============')
-
-
-
     if (user.messenger_id) {
       // Yay, we found our recipient!
       // Let's forward our bot response to her.
@@ -73,6 +65,8 @@ const actions = {
     console.log('context: ', context)
     console.log('text: ', text)
     console.log('entities: ', entities)
+
+    context.contact = entities.contact[0].value
 
     await context
   }

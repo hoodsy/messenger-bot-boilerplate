@@ -52,7 +52,7 @@ UserSchema.statics.findOrCreateSession = async function (messenger_id) {
   }
 
   if (!user.session.id) {
-    console.log('USER PRE SESSION CREATE')
+    console.log('CREATING USER SESSION')
     console.log('============')
 
     return await this.findOneAndUpdate(
@@ -70,7 +70,7 @@ UserSchema.statics.findOrCreateSession = async function (messenger_id) {
   }
   else {
 
-    console.log('SENDING SESSIONLESS USER')
+    console.log('SENDING USER WITH SESSION')
     console.log('============')
 
     return user
