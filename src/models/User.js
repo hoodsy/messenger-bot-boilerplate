@@ -12,7 +12,8 @@ const UserSchema = new Schema({
   },
   session: {
     id: { type: String },
-    context: { type: Object }
+    context: { type: Object },
+    default: {}
   }
 }, {
   timestamps: {
