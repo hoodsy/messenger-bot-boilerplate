@@ -1,4 +1,4 @@
-import { token } from '../config'
+import { FB_VERIFY_TOKEN } from '../config'
 import * as send from '../api/send'
 import * as actions from '../actions'
 import User from '../models/User'
@@ -9,7 +9,7 @@ import { timeout } from '../util'
 // ---
 //
 export async function handleWebhookGet (req, res) {
-  if (req.query['hub.FB_VERIFY_TOKEN'] === token) {
+  if (req.query['hub.FB_VERIFY_TOKEN'] === FB_VERIFY_TOKEN) {
     res.send(req.query['hub.challenge'])
   }
   res.send('Error, wrong token')
