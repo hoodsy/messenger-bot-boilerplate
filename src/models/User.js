@@ -52,9 +52,6 @@ UserSchema.statics.findOrCreateSession = async function (messenger_id) {
   }
 
   if (!user.session.id) {
-    console.log('CREATING USER SESSION')
-    console.log('============')
-
     return await this.findOneAndUpdate(
       { messenger_id },
       {
@@ -69,10 +66,6 @@ UserSchema.statics.findOrCreateSession = async function (messenger_id) {
     )
   }
   else {
-
-    console.log('SENDING USER WITH SESSION')
-    console.log('============')
-
     return user
   }
 }
