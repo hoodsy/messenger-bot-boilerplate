@@ -45,7 +45,7 @@ app.use((err, req, res, next) => {
   console.error('============')
   console.error(err.stack || err)
   console.error('============')
-  res.status(500)
+  res.status(200)
 })
 
 // spin spin sugar
