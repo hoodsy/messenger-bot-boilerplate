@@ -1,5 +1,6 @@
 import mongoose, { Schema } from 'mongoose'
 import request from 'request-promise'
+import _ from 'lodash'
 
 const UserSchema = new Schema({
   messenger_id: { type: String, index: 1 },
@@ -50,7 +51,7 @@ UserSchema.statics.findOrCreateSession = async function (messenger_id) {
     throw new Error(`No User found for ${messenger_id} in findOrCreateSession()`)
   }
 
-  if (user.session == {}) {
+  if (_.isEmpty(user.session)) {
     console.log('USER PRE SESSION CREATE')
     console.log('============')
 
