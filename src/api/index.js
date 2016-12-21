@@ -66,7 +66,7 @@ const actions = {
     console.log('text: ', text)
     console.log('entities: ', entities)
 
-    context.contact = entities.contact[0].value
+    context.contact = entities.contact[0].value || null
 
     await context
   }
