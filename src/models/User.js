@@ -8,6 +8,10 @@ const UserSchema = new Schema({
   },
   profiles: {
     messenger: { type: Object }
+  },
+  session: {
+    id: { type: String },
+    context: { type: Object }
   }
 }, {
   timestamps: {
@@ -34,6 +38,27 @@ UserSchema.statics.createUnique = async function(messenger_id) {
       }
     }).save()
   }
+}
+
+UserSchema.statics.findOrCreateSession = async function (messenger_id) {
+  const user = await this.findOne(
+    { messenger_id },
+    { session: 1 }
+  )
+
+  if (!user) {
+    throw new Error(`No User found for ${messenger_id} in findOrCreateSession()`)
+  }
+
+  if (!user.session) {
+    user.session = {
+      id: new Date().toISOString(),
+      context: {}
+    }
+    await user.save()
+  }
+
+  return user
 }
 
 UserSchema.statics.exists = async function (messenger_id) {

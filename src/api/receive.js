@@ -54,13 +54,21 @@ async function handleMessage({ message, sender }) {
   //   await send.textMessage(sender.id, 'Message Received: ' + message.text)
   // }
 
-  const sessionId = findOrCreateSession(sender);
+  // const sessionId = findOrCreateSession(sender);
+  // const sessionId = findOrCreateSession(sender);
+  const user = await User.findOrCreateSession(sender.id)
 
   const context = await wit.runActions(
-    sessionId, // the user's current session
+    user.session.id, // the user's current session
     message.text, // the user's message
-    sessions[sessionId].context // the user's current session state
+    user.session.context // the user's current session state
   )
+
+  // const context = await wit.runActions(
+  //   sessionId, // the user's current session
+  //   message.text, // the user's message
+  //   sessions[sessionId].context // the user's current session state
+  // )
   // ).then((context) => {
   //   // Our bot did everything it has to do.
   //   // Now it's waiting for further messages to proceed.

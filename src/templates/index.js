@@ -1,3 +1,3 @@
-export * from './Generic'
-export * from './Button'
-export * from './QuickReply'
+export * as Generic from './Generic'
+export * as Button from './Button'
+export * as QuickReply from './QuickReply'
