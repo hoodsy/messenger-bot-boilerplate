@@ -112,9 +112,9 @@ export async function startMessage(recipientId) {
   await User.createUnique(recipientId)
 
   await textMessage(recipientId, 'Hey there ✌️')
-  await textMessage(recipientId, 'Let\'s have a look at our message templates:')
+  await textMessage(recipientId, 'Let\'s have a look at our message templates 🌝')
 
-  await textMessage(recipientId, 'Button Template:')
+  await textMessage(recipientId, '▶️ Button Template ▶️')
   const exampleButton = new Button({
     type: 'web_url',
     title: 'Click All The Buttons',
@@ -122,7 +122,7 @@ export async function startMessage(recipientId) {
   })
   await buttonMessage(recipientId, 'What to do now? 🤔', [ exampleButton ])
 
-  await textMessage(recipientId, 'Generic Template')
+  await textMessage(recipientId, '✉️ Generic Template ✉️')
   const exampleTemplate = new Generic({
     title: 'Templates on Templates',
     subtitle: 'You can also use List, Receipt, and Airline templates... 👌',
