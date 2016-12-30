@@ -101,11 +101,9 @@ async function handlePostback({ postback, sender }) {
   switch(postback.payload) {
 
     case actions.START:
-      await User.createUnique(sender.id)
-      await send.textMessage(sender.id, 'Hey there! 😁 I\'ll bring you Politics and NBA news daily - if you get lost just say "help".')
+      await send.startMessage(sender.id)
 
-      await timeout(1000)
-      await send.textMessage(sender.id, 'Here are the daily headlines, for your viewing pleasure:')
+      // await timeout(1000)
       return
 
     case actions.EDIT_SUBSCRIPTION:
