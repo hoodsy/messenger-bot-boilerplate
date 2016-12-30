@@ -54,7 +54,7 @@ export async function templateMessage(recipientId, templates, quick_replies = nu
     await _send(messageData)
 }
 
-export async function buttonMessage(recipientId, buttons, quick_replies = null) {
+export async function buttonMessage(recipientId, text, buttons, quick_replies = null) {
   const messageData = {
     recipient: { id: recipientId },
     message: {
@@ -63,6 +63,7 @@ export async function buttonMessage(recipientId, buttons, quick_replies = null) 
         type: 'template',
         payload: {
           template_type: 'button',
+          text: text,
           buttons: buttons
         }
       }
@@ -113,16 +114,20 @@ export async function startMessage(recipientId) {
   await textMessage(recipientId, 'Hey there ✌️')
   await textMessage(recipientId, 'Let\'s have a look at our message templates:')
 
+  await textMessage(recipientId, 'Button Template:')
   const exampleButton = new Button({
-    title: 'Click All The Buttons',
     type: 'web_url',
+    title: 'Click All The Buttons',
     url: 'http://giphy.com/gifs/nfl-football-celebration-3o7TKUWvGbDJp46i08'
   })
-  await buttonMessage(recipientId, exampleButton)
-  await templateMessage(recipientId, new Generic({
+  await buttonMessage(recipientId, 'What to do now? 🤔', [ exampleButton ])
+
+  await textMessage(recipientId, 'Generic Template')
+  const exampleTemplate = new Generic({
     title: 'Templates on Templates',
     subtitle: 'You can also use List, Receipt, and Airline templates... 👌',
-    image_url: 'http://giphy.com/gifs/1992-sean-astin-encino-man-14xGR77eAuyHJu',
+    image_url: 'https://s-media-cache-ak0.pinimg.com/736x/13/e0/ce/13e0cef23c4323e8d32be0e6322be99a.jpg',
     buttons: [ exampleButton ]
-  }))
+  })
+  await templateMessage(recipientId, [ exampleTemplate ])
 }

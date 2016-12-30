@@ -7,7 +7,7 @@ Basically the code from  [messenger-bot-turial](https://github.com/jw84/messenge
 - [x] Refactor send to FB API
 - [x] Refactor receive
 - [x] Refine Wit integration
-- [ ] Message type examples after START
+- [x] Message type examples after START
 - [ ] Add interaction analytics / tracking
   - Clicks
   - Custom (Wit.ai triggers)
