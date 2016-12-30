@@ -17,7 +17,7 @@ const actions = {
     if (user.messenger_id) {
       await send.textMessage(user.messenger_id, text)
     } else {
-      console.error('Oops! Couldn\'t find user for session:', sessionId);
+      console.error('Oops! Couldn\'t find user for session:', sessionId)
     }
   },
 
@@ -28,7 +28,7 @@ const actions = {
     }
     return context
   }
-};
+}
 
 // Setting up our bot
 export const wit = new Wit({

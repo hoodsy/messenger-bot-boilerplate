@@ -1,3 +1,9 @@
+//
+//
+// ---
+// API Reference:
+// https://developers.facebook.com/docs/messenger-platform/send-api-reference/generic-template
+//
 export default class Generic {
   constructor(props) {
     this.title = props.title || null

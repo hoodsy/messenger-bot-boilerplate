@@ -1,7 +1,7 @@
 import request from 'request-promise'
 
 import User from '../models/User'
-import { Button } from '../templates'
+import { Button, Generic } from '../templates'
 import * as actions from '../actions'
 import { FB_PAGE_TOKEN } from '../config'
 
@@ -103,4 +103,24 @@ export async function scheduledSubscriptionMessage() {
     await Promise.all(users.map(async (user) => {
       await textMessage(user.messenger_id, 'SUBSCRIPTION MESSAGE')
     }))
+}
+
+export async function startMessage(recipientId) {
+  await User.createUnique(recipientId)
+
+  await textMessage(recipientId, 'Hey there ✌️')
+  await textMessage(recipientId, 'Let\'s have a look at our message templates:')
+
+  const exampleButton = new Button({
+    title: 'Click All The Buttons',
+    type: 'web_url',
+    url: 'http://giphy.com/gifs/nfl-football-celebration-3o7TKUWvGbDJp46i08'
+  })
+  await buttonMessage(recipientId, exampleButton)
+  await templateMessage(recipientId, new Generic({
+    title: 'Templates on Templates',
+    subtitle: 'You can also use List, Receipt, and Airline templates... 👌',
+    image_url: 'http://giphy.com/gifs/1992-sean-astin-encino-man-14xGR77eAuyHJu',
+    buttons: [ exampleButton ]
+  }))
 }
