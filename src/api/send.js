@@ -1,7 +1,9 @@
 import request from 'request-promise'
 
 import User from '../models/User'
-import { Button, Generic } from '../templates'
+// import { Button, Generic } from '../templates'
+import Generic from '../templates/Generic'
+import Button from '../templates/Button'
 import * as actions from '../actions'
 import { FB_PAGE_TOKEN } from '../config'
 
