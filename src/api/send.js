@@ -3,6 +3,7 @@ import request from 'request-promise'
 import User from '../models/User'
 import Generic from '../templates/Generic'
 import Button from '../templates/Button'
+import QuickReply from '../templates/QuickReply'
 import * as actions from '../actions'
 import { FB_PAGE_TOKEN, dashbot } from '../config'
 
@@ -132,5 +133,11 @@ export async function startMessage(recipientId) {
     buttons: [ exampleButton ]
   })
   await templateMessage(recipientId, [ exampleTemplate ])
+
+  const quickReply = new QuickReply({
+    content_type: 'text',
+    title: '💎 Free Stuff',
+    payload: 'EXAMPLE_ACTION'
+  })
+  await textMessage(recipientId, 'Toss some Quick Replies in for good measure...', [ quickReply ])
 }
-textMessage('1489418707742868', 'where the analytics at')

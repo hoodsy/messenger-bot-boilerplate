@@ -5,6 +5,17 @@ import * as send from './send'
 import User from '../models/User'
 
 //
+// Initialize Wit.ai
+// ---
+// API Reference: https://wit.ai/docs
+//
+export const wit = new Wit({
+  accessToken: WIT_TOKEN,
+  actions,
+  logger: new log.Logger(log.INFO)
+})
+
+//
 // Bot Actions
 // ---
 //
@@ -29,10 +40,3 @@ const actions = {
     return context
   }
 }
-
-// Setting up our bot
-export const wit = new Wit({
-  accessToken: WIT_TOKEN,
-  actions,
-  logger: new log.Logger(log.INFO)
-})
