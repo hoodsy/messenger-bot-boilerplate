@@ -1,20 +1,13 @@
-<div align="center">
-
 ![messenger-bot-boilerplate](./docs/cover-readme.png)
-<h1>
-  [Messenger Bot Boilerplate](https://www.facebook.com/messengerbotboilerplate/)
-</h1>
-<div>
-  [![Dependency Status](https://david-dm.org/hoodsy/messenger-bot-boilerplate.svg)](https://david-dm.org/hoodsy/messenger-bot-boilerplate)
-  [![devDependency Status](https://david-dm.org/hoodsy/messenger-bot-boilerplate/dev-status.svg)](https://david-dm.org/hoodsy/messenger-bot-boilerplate#info=devDependencies)
-</div>
+# [Messenger Bot Boilerplate](https://www.facebook.com/messengerbotboilerplate/)
+[![Dependency Status](https://david-dm.org/hoodsy/messenger-bot-boilerplate.svg)](https://david-dm.org/hoodsy/messenger-bot-boilerplate)
+[![devDependency Status](https://david-dm.org/hoodsy/messenger-bot-boilerplate/dev-status.svg)](https://david-dm.org/hoodsy/messenger-bot-boilerplate#info=devDependencies)
 
 A **Chatbot boilerplate** app for **[Facebook Messenger](https://www.messenger.com)** with **NLP** by **[Wit.ai](https://wit.ai)** and **analytics** by **[Dashbot.io](https://www.dashbot.io/)**.
 
 Also includes a basic send/receive API and message templates.
 
 ![logo-tools](./docs/logo-tools.png)
-</div>
 
 # Table of Contents
 - [Usage](#usage)
