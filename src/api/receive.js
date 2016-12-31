@@ -1,4 +1,4 @@
-import { FB_VERIFY_TOKEN } from '../config'
+import { FB_VERIFY_TOKEN, dashbot } from '../config'
 import * as send from '../api/send'
 import * as actions from '../actions'
 import User from '../models/User'
@@ -16,6 +16,8 @@ export async function handleWebhookGet (req, res) {
 }
 
 export async function handleWebhookPost (req, res) {
+  // Track inbound messages
+  dashbot.logIncoming(req.body)
   let messaging_events = req.body.entry[0].messaging
   if (!messaging_events) {
     return

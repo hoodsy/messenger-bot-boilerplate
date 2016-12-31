@@ -1,23 +1,25 @@
 import request from 'request-promise'
 
 import User from '../models/User'
-// import { Button, Generic } from '../templates'
 import Generic from '../templates/Generic'
 import Button from '../templates/Button'
 import * as actions from '../actions'
-import { FB_PAGE_TOKEN } from '../config'
+import { FB_PAGE_TOKEN, dashbot } from '../config'
 
 //
 // Message Request
 // ---
 //
 async function _send(messageData) {
-    await request({
-      url: 'https://graph.facebook.com/v2.6/me/messages',
-      qs: { access_token: FB_PAGE_TOKEN },
-      method: 'POST',
-      json: messageData
-    })
+  const requestData = {
+    url: 'https://graph.facebook.com/v2.6/me/messages',
+    qs: { access_token: FB_PAGE_TOKEN },
+    method: 'POST',
+    json: messageData
+  }
+  const body = await request(requestData)
+  // Track outbound messages
+  dashbot.logOutgoing(requestData, body)
 }
 
 //
@@ -131,3 +133,4 @@ export async function startMessage(recipientId) {
   })
   await templateMessage(recipientId, [ exampleTemplate ])
 }
+textMessage('1489418707742868', 'where the analytics at')
