@@ -1,5 +1,11 @@
-# messenger-bot-boilerplate
+![messenger-bot-boilerplate](./docs/logo.png)
+# Messenger Bot Boilerplate
+[![Dependency Status](https://david-dm.org/hoodsy/messenger-bot-boilerplate.svg)](https://david-dm.org/hoodsy/messenger-bot-boilerplate)
+[![devDependency Status](https://david-dm.org/hoodsy/messenger-bot-boilerplate/dev-status.svg)](https://david-dm.org/hoodsy/messenger-bot-boilerplate#info=devDependencies)
+
 Basically the code from  [messenger-bot-turial](https://github.com/jw84/messenger-bot-tutorial) with a few nice to haves.
+
+![logo-tools](./docs/logo-tools.png)
 
 *recipientId for testing: ```'1489418707742868'```*
 
