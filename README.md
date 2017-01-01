@@ -53,6 +53,4 @@ npm start
 3. Set ```DASHBOT_KEY``` with your *Bot Key* from Wit.ai.
 
 # Deploy
-*TODO: serverless deploy with [AWS Lambda](https://aws.amazon.com/lambda/)*
-
-Head back to **[Messenger Bot Tutorial](https://github.com/jw84/messenger-bot-tutorial)** for a walkthrough on deploying your bot.
+Head back to **[Messenger Bot Tutorial](https://github.com/jw84/messenger-bot-tutorial)** for a walkthrough on deploying your bot to Heroku.

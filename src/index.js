@@ -14,7 +14,7 @@ import { FB_APP_SECRET } from './config/index'
 // ---
 //
 const app = express()
-app.set('port', (process.env.PORT || 5000))
+app.set('port', (process.env.PORT || 6000))
 dbConnect(app)
 
 //
