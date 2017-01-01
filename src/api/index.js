@@ -5,17 +5,6 @@ import * as send from './send'
 import User from '../models/User'
 
 //
-// Initialize Wit.ai
-// ---
-// API Reference: https://wit.ai/docs
-//
-export const wit = new Wit({
-  accessToken: WIT_TOKEN,
-  actions,
-  logger: new log.Logger(log.INFO)
-})
-
-//
 // Bot Actions
 // ---
 //
@@ -28,7 +17,7 @@ const actions = {
     if (user.messenger_id) {
       await send.textMessage(user.messenger_id, text)
     } else {
-      console.error('Oops! Couldn\'t find user for session:', sessionId)
+      console.error(`Oops! Couldn\'t find user for session: ${sessionId}`)
     }
   },
 
@@ -40,3 +29,14 @@ const actions = {
     return context
   }
 }
+
+//
+// Initialize Wit.ai
+// ---
+// API Reference: https://wit.ai/docs
+//
+export const wit = new Wit({
+  accessToken: WIT_TOKEN,
+  actions: actions,
+  logger: new log.Logger(log.INFO)
+})
