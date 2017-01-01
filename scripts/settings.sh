@@ -1,8 +1,11 @@
+#!/bin/bash
+source ../.env
+
 ##
 ## Connect Page to App
 ## ---
 ##
-curl -X POST "https://graph.facebook.com/v2.6/me/subscribed_apps?access_token=<PAGE_ACCESS_TOKEN>"
+curl -X POST "https://graph.facebook.com/v2.6/me/subscribed_apps?access_token=$FB_PAGE_TOKEN"
 
 ##
 ## Change 'Persistent Menu' options
@@ -18,7 +21,7 @@ curl -X POST -H "Content-Type: application/json" -d '{
       "payload":"EDIT_SUBSCRIPTION"
     }
   ]
-}' "https://graph.facebook.com/v2.6/me/thread_settings?access_token=<PAGE_ACCESS_TOKEN>"
+}' "https://graph.facebook.com/v2.6/me/thread_settings?access_token=$FB_PAGE_TOKEN"
 
 ##
 ## Change 'Get Started' button
@@ -32,4 +35,4 @@ curl -X POST -H "Content-Type: application/json" -d '{
       "payload":"START"
     }
   ]
-}' "https://graph.facebook.com/v2.6/me/thread_settings?access_token=<PAGE_ACCESS_TOKEN>"
+}' "https://graph.facebook.com/v2.6/me/thread_settings?access_token=$FB_PAGE_TOKEN"
