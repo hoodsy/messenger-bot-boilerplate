@@ -42,6 +42,7 @@ UserSchema.statics.createUnique = async function(messenger_id) {
 }
 
 UserSchema.statics.findOrCreateSession = async function (messenger_id) {
+  await User.createUnique(messenger_id)
   const user = await this.findOne(
     { messenger_id },
     { session: 1 }
