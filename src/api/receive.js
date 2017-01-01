@@ -11,7 +11,7 @@ import { FB_VERIFY_TOKEN, dashbot } from '../config'
 // ---
 //
 export async function handleWebhookGet (req, res) {
-  if (req.query['hub.FB_VERIFY_TOKEN'] === FB_VERIFY_TOKEN) {
+  if (req.query['hub.verify_token'] === FB_VERIFY_TOKEN) {
     res.send(req.query['hub.challenge'])
   }
   res.send('Error, wrong token')
