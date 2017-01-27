@@ -2,8 +2,8 @@ require('dotenv').config()
 import Dashbot from 'dashbot'
 
 export const db = {
-  dev: 'mongodb://localhost/messenger-bot-boilerplate',
-  prod: 'mongodb://localhost/messenger-bot-boilerplate'
+  dev: 'mongodb://localhost/wrinkle-dev',
+  prod: 'mongodb://localhost/wrinkle-prod'
 }
 
 export const FB_VERIFY_TOKEN = process.env.FB_VERIFY_TOKEN
