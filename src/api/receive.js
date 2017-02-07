@@ -29,18 +29,23 @@ export async function handleWebhookPost (req, res) {
 
   for (let i = 0; i < messaging_events.length; i++) {
     let event = req.body.entry[0].messaging[i]
-    // Handle text messages,
-    if (event.message && event.message.text &&
-        !event.message.is_echo && !event.delivery) {
-      await handleMessage(event)
-      continue
-    }
-    // button clicks
+    // Handle button clicks,
     if (event.postback) {
       await handlePostback(event)
-      continue
     }
-    // and quick replies...
+    // text messages,
+    else if (event.message && event.message.text &&
+            !event.message.is_echo && !event.delivery) {
+      await handleMessage(event)
+    }
+    // attachments,
+    else if (event.message && event.message.attachments) {
+      await handleAttachment(event)
+    }
+    // and quick replies.
+    else if (event.quick_reply) {
+      await handleQuickReply(event)
+    }
   }
   res.sendStatus(200)
 }
@@ -57,11 +62,23 @@ async function handleMessage({ message, sender }) {
     message.text, // the user's message
     user.session.context // the user's current session state
   )
-
-  await send.textMessage(sender.id, 'Message Received: ' + message.text)
 }
 
-async function handleQuickReply({ quick_reply }, sender) {
+async function handleAttachment({ message, sender }) {
+  const user = await User.findOne({ messenger_id: sender.id })
+
+  if (user && message.attachments.length > 0) {
+    const [ location ] = message.attachments.filter(attachment => attachment.type === 'location')
+    user.coordinates = {
+      lat: location.payload.coordinates.lat,
+      long: location.payload.coordinates.long,
+      url: location.url
+    }
+    await user.save()
+  }
+}
+
+async function handleQuickReply({ quick_reply, sender }) {
   // switch(quick_reply.payload) {
     // case actions.GET_FEATURED_ARTICLES:
     //   await send.featuredMessage(sender.id)

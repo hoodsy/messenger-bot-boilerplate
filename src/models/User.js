@@ -13,6 +13,11 @@ const UserSchema = new Schema({
     id: { type: String },
     context: { type: Object },
     default: {}
+  },
+  coordinates: {
+    lat: { type: Number },
+    long: { type: Number },
+    url: { type: String }
   }
 }, {
   timestamps: {
@@ -88,6 +93,18 @@ UserSchema.statics.unsubscribe = async function (messenger_id) {
     { messenger_id },
     { $set: { 'subscription.active': false } }
   )
+}
+
+UserSchema.methods.getCoordinates = function () {
+  if (typeof this.coordinates.lat != 'number') {
+    return false
+  }
+  else {
+    return {
+      latitude: this.coordinates.lat,
+      longitude: this.coordinates.long
+    }
+  }
 }
 
 export default mongoose.model('User', UserSchema)
