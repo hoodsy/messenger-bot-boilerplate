@@ -23,13 +23,14 @@
     "mongoose": "^4.7.1",
     "node-schedule": "^1.2.0",
     "node-wit": "^4.2.0",
-    "request-promise": "^4.1.1",
+    "request-promise": "^4.1.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
     "bot": "babel-node ./src/api/index.js",
-    "deploy:prod": "./scripts/deploy.sh"
+    "deploy:prod": "./scripts/deploy.sh",
+    "deploy:dev": "PORT=3434 NODE_ENV=development npm start"
   },
   "repository": {
     "type": "git",
