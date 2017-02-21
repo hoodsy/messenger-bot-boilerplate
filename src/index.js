@@ -8,7 +8,7 @@ import moment from 'moment'
 
 import { handleWebhookPost, handleWebhookGet } from './api/receive'
 import { dbConnect } from './config/db'
-import { FB_APP_SECRET } from './config/index'
+import { FB_APP_SECRET, FB_APP_TEST_SECRET } from './config/index'
 
 //
 // Server Config
@@ -81,7 +81,7 @@ function verifyRequestSignature(req, res, buf) {
     var method = elements[0];
     var signatureHash = elements[1];
 
-    var expectedHash = crypto.createHmac('sha1', FB_APP_SECRET)
+    var expectedHash = crypto.createHmac('sha1', (process.env.NODE_ENV == 'production') ? FB_APP_SECRET : FB_APP_TEST_SECRET)
                         .update(buf)
                         .digest('hex');
 

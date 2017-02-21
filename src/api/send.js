@@ -5,7 +5,7 @@ import Generic from '../templates/Generic'
 import Button from '../templates/Button'
 import QuickReply from '../templates/QuickReply'
 import * as actions from '../actions'
-import { FB_PAGE_TOKEN, dashbot } from '../config'
+import { FB_PAGE_TOKEN, FB_PAGE_TEST_TOKEN, dashbot } from '../config'
 
 //
 // Message Request
@@ -14,7 +14,7 @@ import { FB_PAGE_TOKEN, dashbot } from '../config'
 async function _send(messageData) {
   const requestData = {
     url: 'https://graph.facebook.com/v2.6/me/messages',
-    qs: { access_token: FB_PAGE_TOKEN },
+    qs: { access_token: (process.env.NODE_ENV == 'production') ? FB_PAGE_TOKEN : FB_PAGE_TEST_TOKEN },
     method: 'POST',
     json: messageData
   }

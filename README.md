@@ -56,3 +56,4 @@ npm start
 Head back to **[Messenger Bot Tutorial](https://github.com/jw84/messenger-bot-tutorial)** for a walkthrough on deploying your bot to Heroku.
 
 1. Change DB name in ```config/index.js```
+2. Run ```settings.sh``` and ```test-settings.sh```
