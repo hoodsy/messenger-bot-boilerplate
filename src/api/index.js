@@ -36,11 +36,13 @@ const actions = {
     }
   },
 
-  // async showPickupOptions({ context, text, entities }) {
-    // entities.datetime
-    // context.quick_replies = PICKUP_OPTIONS
-    // return context
-  // }
+  async getContact({ context, text, entities}) {
+    if (entities.contact && Array.isArray(entities.contact)) {
+      // Choose first entity
+      entities.contact.map(entity => context.contact = entity.value)
+    }
+    return context
+  }
 }
 
 // Helpers
