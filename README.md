@@ -30,7 +30,7 @@ npm start
 ### Facebook Messenger
 1. Follow the steps at **[Messenger Bot Tutorial](https://github.com/jw84/messenger-bot-tutorial#setup-the-facebook-app)** to create a Facebook App or Page, setup Webhooks, and set Environmental Variables.
 
-2. Set ```FB_PAGE_TOKEN```, ```FB_APP_SECRET``` and ```FB_VERIFY_TOKEN``` in ```example.env```.
+2. Set ```FB_PAGE_TOKEN```, ```FB_APP_SECRET```, ```FB_APP_SECRET```, and ```FB_VERIFY_TOKEN``` in ```example.env```.
 
 3. Move ```example.env``` -> ```.env```.
 
@@ -54,3 +54,5 @@ npm start
 
 # Deploy
 Head back to **[Messenger Bot Tutorial](https://github.com/jw84/messenger-bot-tutorial)** for a walkthrough on deploying your bot to Heroku.
+
+1. Change DB name in ```config/index.js```

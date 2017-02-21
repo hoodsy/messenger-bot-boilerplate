@@ -4,6 +4,7 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import catchPromiseErrors from 'async-error-catcher'
 import crypto from 'crypto'
+import moment from 'moment'
 
 import { handleWebhookPost, handleWebhookGet } from './api/receive'
 import { dbConnect } from './config/db'
@@ -14,19 +15,19 @@ import { FB_APP_SECRET } from './config/index'
 // ---
 //
 const app = express()
-app.set('port', (process.env.PORT || 6000))
+app.set('port', (process.env.PORT || 3434))
 dbConnect(app)
 
 //
 // Server Middleware
 // ---
 //
-app.use(({method, url}, rsp, next) => {
-  rsp.on('finish', () => {
-    console.log(`${rsp.statusCode} ${method} ${url}`);
-  })
-  next()
-})
+// app.use(({method, url}, rsp, next) => {
+//   rsp.on('finish', () => {
+//     console.log(`${rsp.statusCode} ${method} ${url}`);
+//   })
+//   next()
+// })
 app.use(bodyParser.json({ verify: verifyRequestSignature }))
 
 //
@@ -46,6 +47,7 @@ app.post('/webhook/', catchPromiseErrors(handleWebhookPost))
 //
 app.use((err, req, res, next) => {
   console.error('============')
+  console.error(`ERROR caught at ${moment().format('L LT')}`)
   console.error(err.stack || err)
   console.error('============')
   res.sendStatus(200)

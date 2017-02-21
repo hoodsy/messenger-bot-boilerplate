@@ -27,5 +27,5 @@ export function dbConnect(app) {
 
   // Use Bluebird Promises
   mongoose.Promise = Promise
-  mongoose.connect(dbUrl, { db: { safe: false } })
+  mongoose.connect(dbUrl)
 }
