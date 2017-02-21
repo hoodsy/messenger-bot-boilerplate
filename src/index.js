@@ -8,7 +8,7 @@ import moment from 'moment'
 
 import { handleWebhookPost, handleWebhookGet } from './api/receive'
 import { dbConnect } from './config/db'
-import { chooseAppSecret } from './config/index'
+import { chooseAppSecret, NODE_ENV } from './config/index'
 
 //
 // Server Config
@@ -58,7 +58,12 @@ app.use((err, req, res, next) => {
 // ---
 //
 app.listen(app.get('port'), function() {
-  console.log('running on port', app.get('port'))
+  console.log('------------------------------------------------ \n')
+  console.log('Server Started \n')
+  console.log(`PORT: ${app.get('port')}`)
+  console.log(`MODE: ${NODE_ENV}\n`)
+  console.log('================================================')
+  console.log('================================================')
 })
 
 /*
