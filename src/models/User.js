@@ -1,6 +1,8 @@
 import mongoose, { Schema } from 'mongoose'
 import request from 'request-promise'
 
+import { choosePageToken } from '../config'
+
 const UserSchema = new Schema({
   messenger_id: { type: String, index: 1 },
   subscription: {
@@ -31,7 +33,7 @@ UserSchema.statics.createUnique = async function(messenger_id) {
     const profile = await request({
       url: `https://graph.facebook.com/v2.6/${messenger_id}`,
       qs: {
-        access_token: process.env.FB_PAGE_TOKEN,
+        access_token: choosePageToken(),
         fields: 'first_name,last_name,profile_pic,locale,timezone,gender,is_payment_enabled'
       },
       method: 'GET'

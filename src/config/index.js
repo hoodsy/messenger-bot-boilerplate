@@ -13,6 +13,7 @@ export const FB_PAGE_TEST_TOKEN = process.env.FB_PAGE_TEST_TOKEN
 export const FB_APP_TEST_SECRET = process.env.FB_APP_TEST_SECRET
 export const WIT_TOKEN = process.env.WIT_TOKEN
 const DASHBOT_KEY = process.env.DASHBOT_KEY
+export const NODE_ENV = process.env.NODE_ENV
 
 //
 // Analytics
@@ -20,3 +21,15 @@ const DASHBOT_KEY = process.env.DASHBOT_KEY
 // Facebook Messenger
 //
 export const dashbot = Dashbot(DASHBOT_KEY).facebook
+
+export function choosePageToken() {
+  return (NODE_ENV === 'production')
+    ? FB_PAGE_TOKEN
+    : FB_PAGE_TEST_TOKEN
+}
+
+export function chooseAppSecret() {
+  return (NODE_ENV === 'production')
+    ? FB_APP_SECRET
+    : FB_APP_TEST_SECRET
+}
