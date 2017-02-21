@@ -4,6 +4,7 @@ import User from '../models/User'
 import Generic from '../templates/Generic'
 import Button from '../templates/Button'
 import QuickReply from '../templates/QuickReply'
+import ListItem from '../templates/ListItem'
 import * as actions from '../actions'
 import { choosePageToken, dashbot } from '../config'
 
@@ -75,9 +76,29 @@ export async function buttonMessage(recipientId, text, buttons, quick_replies = 
   await _send(messageData)
 }
 
+export async function listMessage(recipientId, listItems, buttons, quick_replies = null) {
+  const messageData = {
+    recipient: { id: recipientId },
+    message: {
+      quick_replies: quick_replies,
+      attachment: {
+        type: 'template',
+        payload: {
+          template_type: 'list',
+          elements: listItems,
+          buttons: buttons
+        }
+      }
+    }
+  }
+  await _send(messageData)
+}
+
 //
 // Custom Messages
-// ---
+// ---------------------------------------------------------------
+// ---------------------------------------------------------------
+// ---------------------------------------------------------------
 //
 export async function subscriptionMessage(recipientId) {
   const user = await User.findOne(
@@ -133,6 +154,30 @@ export async function startMessage(recipientId) {
     buttons: [ exampleButton ]
   })
   await templateMessage(recipientId, [ exampleTemplate ])
+
+  const exampleListItem1 = new ListItem({
+    title: 'Item #1',
+    subtitle: 'The firstest of items.',
+    image_url: 'https://s-media-cache-ak0.pinimg.com/736x/13/e0/ce/13e0cef23c4323e8d32be0e6322be99a.jpg',
+    default_action: {
+      type: 'web_url',
+      url: 'https://facebook.com/messengerbotboilerplate',
+      messenger_extensions: true,
+      webview_height_ratio: 'tall',
+      fallback_url: 'https://facebook.com/messengerbotboilerplate'
+    }
+  })
+  const exampleListItem2 = new ListItem({
+    title: 'Item #2',
+    subtitle: 'The secondest of items.',
+    image_url: 'https://s-media-cache-ak0.pinimg.com/736x/13/e0/ce/13e0cef23c4323e8d32be0e6322be99a.jpg',
+    buttons: [ exampleButton ]
+  })
+
+  await listMessage(
+    recipientId,
+    [ exampleListItem1, exampleListItem2 ]
+  )
 
   const quickReply = new QuickReply({
     content_type: 'text',
