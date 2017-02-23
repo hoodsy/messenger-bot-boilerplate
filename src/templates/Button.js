@@ -19,5 +19,8 @@ export default class Button {
     this.title = props.title || null
     this.url = props.url || null
     this.payload = props.payload
+    this.webview_height_ratio = props.webview_height_ratio || null
+    this.messenger_extensions = props.messenger_extensions || null
+    this.fallback_url = props.fallback_url || null
   }
 }

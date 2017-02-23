@@ -31,6 +31,12 @@ const actions = {
       else {
         await send.textMessage(user.messenger_id, res.text)
       }
+
+      await User.update(
+        { messenger_id: user.messenger_id },
+        { 'session.context': req.context }
+      )
+
     } else if (!TESTING_MODE) {
       console.error(`Oops! Couldn\'t find user for session: ${req.sessionId}`)
     }
