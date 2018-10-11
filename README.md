@@ -1,5 +1,3 @@
-
-test
 ![messenger-bot-boilerplate](./docs/cover-readme.png)
 # [Messenger Bot Boilerplate](https://www.facebook.com/messengerbotboilerplate/)
 [![Dependency Status](https://david-dm.org/hoodsy/messenger-bot-boilerplate.svg)](https://david-dm.org/hoodsy/messenger-bot-boilerplate)
